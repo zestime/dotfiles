@@ -1,4 +1,8 @@
 #!/bin/bash
+# Setup nginx, dnsmasq, and a resolver file to serve up the
+# ~/code directory with nginx, and each subdirectory at their own
+# .test domain
+# NOTE: This script needs to be run with sudo
 
 echo -e "\n\nInstalling nginx"
 echo "=============================="
@@ -7,13 +11,13 @@ echo "=============================="
 # nginx setup
 ######################################################
 
-$DOTFILES=$HOME/.dotfiles
+DOTFILES=~/code/dotfiles
 
 # first, make sure apache is off
-sudo launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist
+launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist
 
 # run nginx when osx starts
-sudo cp /usr/local/opt/nginx/homebrew.mxcl.nginx.plist /Library/LaunchDaemons
+cp /usr/local/opt/nginx/homebrew.mxcl.nginx.plist /Library/LaunchDaemons
 launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
 
 mkdir -p /usr/local/etc/nginx/sites-enabled
@@ -38,5 +42,12 @@ echo "installing dnsmasq"
 ln -s $DOTFILES/nginx/dnsmasq.conf /usr/local/etc/
 
 # setup dnsmasq
-sudo cp -fv /usr/local/opt/dnsmasq/homebrew.mxcl.dnsmasq.plist /Library/LaunchDaemons
-sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq
+cp -fv /usr/local/opt/dnsmasq/homebrew.mxcl.dnsmasq.plist /Library/LaunchDaemons
+launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq
+
+######################################################
+# resolver setup
+######################################################
+
+mkdir -p /etc/resolver
+echo "nameserver 127.0.0.1" > /etc/reoslver/test
