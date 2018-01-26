@@ -78,11 +78,11 @@ call plug#begin('~/.config/nvim/plugged')
 	set mat=2 " how many tenths of a second to blink
 
 	" Tab control
-	set noexpandtab " insert tabs rather than spaces for <Tab>
-	set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-	set tabstop=4 " the visible width of tabs
-	set softtabstop=4 " edit as if the tabs are 4 characters wide
-	set shiftwidth=4 " number of spaces to use for indent and unindent
+	set expandtab 
+	"set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
+	set tabstop=2 " the visible width of tabs
+	set softtabstop=2 " edit as if the tabs are 4 characters wide
+	set shiftwidth=2 " number of spaces to use for indent and unindent
 	set shiftround " round indent to a multiple of 'shiftwidth'
 
 	" code folding settings
@@ -301,7 +301,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'vim-scripts/matchit.zip'
 
 	" detect indent style (tabs vs. spaces)
-	Plug 'tpope/vim-sleuth'
+	"Plug 'tpope/vim-sleuth'
 
     " Writing in vim {{{{
 		Plug 'junegunn/limelight.vim'
@@ -401,6 +401,9 @@ call plug#begin('~/.config/nvim/plugged')
 	    let g:signify_sign_delete_first_line = '‾'
 	    let g:signify_sign_change = '!'
 	" }}}
+	
+	Plug 'kien/ctrlp.vim'
+	let g:ctrlp_user_command = 'find %s -type f'  
 
 	" vim-fugitive {{{
 		Plug 'tpope/vim-fugitive'
@@ -410,6 +413,19 @@ call plug#begin('~/.config/nvim/plugged')
 		nmap <silent><leader>gr :Gread<cr>
 		nmap <silent><leader>gb :Gblame<cr>
 	" }}}
+  "
+
+  " vim-fugitive {{{
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets' 
+    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+    " If you want :UltiSnipsEdit to split your window.
+    let g:UltiSnipsEditSplit="vertical"
+  " }}}
 
 	" ALE {{{
 		Plug 'w0rp/ale' " Asynchonous linting engine
@@ -459,6 +475,7 @@ call plug#begin('~/.config/nvim/plugged')
 		Plug 'moll/vim-node', { 'for': 'javascript' }
 		Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'javascript'] }
 		Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install' }
+		
 	" }}}
 
 	" TypeScript {{{

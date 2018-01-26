@@ -1,4 +1,4 @@
-export DOTFILES=$HOME/.dotfiles
+export DOTFILES=$HOME/workspace/dotfiles
 export ZSH=$DOTFILES/zsh
 
 command_exists() {
