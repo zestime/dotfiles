@@ -425,7 +425,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " If you want :UltiSnipsEdit to split your window.
     let g:UltiSnipsEditSplit="vertical"
-    let g:UltiSnipsSnippetDirectories = [$HOME.'/workspace/dotfiles/vim/UltiSnips', 'UltiSnips']
+    let g:UltiSnipsSnippetDirectories = [$HOME.'/workspace/dotfiles/vim/UltiSnips', 'UltiSnips', 'vim-snippets']
   " }}}
 
 	" ALE {{{
