@@ -403,7 +403,7 @@ call plug#begin('~/.config/nvim/plugged')
 	" }}}
 	
 	Plug 'kien/ctrlp.vim'
-	let g:ctrlp_user_command = 'find %s -type f'  
+  let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 	" vim-fugitive {{{
 		Plug 'tpope/vim-fugitive'
