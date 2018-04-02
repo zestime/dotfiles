@@ -2,10 +2,12 @@
 
 # tmux display things in 256 colors
 set -g default-terminal "tmux-256color-italic"
-#set -g default-terminal "xterm-256color"
+
+#//xterm-256color
 
 #  enable terminal compability
 set-option -ga terminal-overrides ",tmux-256color-italic:Tc"
+set -ga terminal-overrides ",xterm-256color:Tc"
 
 set -g history-limit 20000
 
@@ -102,4 +104,4 @@ bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-
 ### Color & Style Settings ###
 ##############################
 
-#source ~/workspace/dotfiles/tmux/theme.sh
+source ~/workspace/dotfiles/tmux/theme.sh
