@@ -13,6 +13,8 @@ source install/link.sh
 
 source install/git.sh
 
+source install/zsh.sh
+
 # only perform macOS-specific install
 if [ "$(uname)" == "Darwin" ]; then
     echo -e "\n\nRunning on OSX"
