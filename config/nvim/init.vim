@@ -187,8 +187,6 @@ call plug#begin('~/.config/nvim/plugged')
 	map <silent> <C-k> :call functions#WinMove('k')<cr>
 	map <silent> <C-l> :call functions#WinMove('l')<cr>
 
-	map <leader>wc :wincmd q<cr>
-
 	" move line mappings
 	" ∆ is <A-j> on macOS
 	" ˚ is <A-k> on macOS
@@ -408,19 +406,26 @@ call plug#begin('~/.config/nvim/plugged')
 	" }}}
   "
 
-  " vim-fugitive {{{
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets' 
-    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-    let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<c-b>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    " vim-fugitive {{{
+        Plug 'SirVer/ultisnips'
+        Plug 'honza/vim-snippets' 
+        " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+        let g:UltiSnipsExpandTrigger="<tab>"
+        let g:UltiSnipsJumpForwardTrigger="<c-b>"
+        let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-    " If you want :UltiSnipsEdit to split your window.
-    let g:UltiSnipsEditSplit="vertical"
-    let g:UltiSnipsSnippetDirectories = [$HOME.'/workspace/dotfiles/vim/UltiSnips', 'UltiSnips']
-    "let g:UltiSnipsSnippetDirectories = [$HOME.'/workspace/dotfiles/vim/UltiSnips', 'UltiSnips', 'vim-snippets']
-  " }}}
+        " If you want :UltiSnipsEdit to split your window.
+        let g:UltiSnipsEditSplit="vertical"
+        let g:UltiSnipsSnippetDirectories = [$HOME.'/workspace/dotfiles/vim/UltiSnips', 'UltiSnips']
+        "let g:UltiSnipsSnippetDirectories = [$HOME.'/workspace/dotfiles/vim/UltiSnips', 'UltiSnips', 'vim-snippets']
+    " }}}
+
+    " vim-prettier {{{
+        Plug 'prettier/vim-prettier' , {
+          \ 'do': 'yarn install',
+          \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
+    " }}}
+
 
 	" ALE {{{
 		Plug 'w0rp/ale' " Asynchonous linting engine
@@ -435,12 +440,6 @@ call plug#begin('~/.config/nvim/plugged')
 		\	'html': []
 		\}
 	" }}}
-
-	" UltiSnips {{{
-		Plug 'SirVer/ultisnips' " Snippets plugin
-		let g:UltiSnipsExpandTrigger="<tab>"
-	" }}}
-" }}}
 
 " Language-Specific Configuration {{{
 	" html / templates {{{
