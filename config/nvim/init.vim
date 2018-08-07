@@ -425,6 +425,13 @@ call plug#begin('~/.config/nvim/plugged')
           \ 'do': 'yarn install',
           \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
     " }}}
+    "
+
+    " deoplete {{{
+        Plug 'Shougo/deoplete.nvim' , { 'do': ':UpdateRemotePlugins' }
+        let g:deoplete#enable_at_startup = 1
+    " }}}
+    "
 
 
 	" ALE {{{

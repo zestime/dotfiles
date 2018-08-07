@@ -102,4 +102,6 @@ autoload -U promptinit; promptinit
 prompt pure
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export ANDROID_HOME=/Users/kiyonghan/Library/Android/sdk
 export PATH="/usr/local/opt/node@8/bin:$PATH"
+export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
