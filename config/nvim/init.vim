@@ -52,6 +52,23 @@ call plug#begin('~/.config/nvim/plugged')
 	set visualbell
 	set t_vb=
 	set tm=500
+
+  " gf
+  set path=.,src
+set suffixesadd=.js,.jsx
+
+function! LoadMainNodeModule(fname)
+    let nodeModules = "./node_modules/"
+    let packageJsonPath = nodeModules . a:fname . "/package.json"
+
+    if filereadable(packageJsonPath)
+        return nodeModules . a:fname . "/" . json_decode(join(readfile(packageJsonPath))).main
+    else
+        return nodeModules . a:fname
+    endif
+endfunction
+
+set includeexpr=LoadMainNodeModule(v:fname)
 " }}}
 
 " Appearance {{{
@@ -248,6 +265,12 @@ call plug#begin('~/.config/nvim/plugged')
 	augroup END
 " }}}
 
+
+
+  function! DoRemote(arg)
+    UpdateRemotePlugins
+  endfunction
+
 " General Functionality {{{
 	" substitute, search, and abbreviate multiple variants of a word
 	Plug 'tpope/vim-abolish'
@@ -424,6 +447,8 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'prettier/vim-prettier' , {
           \ 'do': 'yarn install',
           \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
+        let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
     " }}}
     "
 
@@ -473,7 +498,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 	" JavaScript {{{
 		Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html'] }
-		Plug 'moll/vim-node', { 'for': 'javascript' }
+		"Plug 'moll/vim-node', { 'for': 'javascript' }
 		Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'javascript'] }
 		Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install' }
 		
